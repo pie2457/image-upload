@@ -19,5 +19,6 @@ else
 fi
 
 echo "> Deploy - $JAR_PATH "
+chmod +x $JAR_NAME
 nohup java -jar $JAR_PATH > $REPOSITORY/nohup.out 2>&1 &
 echo "> 배포 완료."
