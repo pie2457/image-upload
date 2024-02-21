@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.16'
+    id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'image'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '17'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    // PreSignedUrl html
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+    // S3
+    implementation 'com.amazonaws:aws-java-sdk-s3:1.12.518'
+    testImplementation 'com.amazonaws:aws-java-sdk-s3:1.12.518'
+    // PreSignedUrl 적용하기 위해 추가
+    implementation platform('software.amazon.awssdk:bom:2.17.53')
+    implementation 'software.amazon.awssdk:s3'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
