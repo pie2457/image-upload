@@ -20,5 +20,5 @@ fi
 
 echo "> Deploy - $JAR_PATH "
 chmod +x $JAR_PATH
-nohup java -jar $JAR_PATH 2>&1 &
+nohup java -jar $JAR_PATH >/home/ubuntu/nohup.out 2>&1 &
 echo "> 배포 완료."
