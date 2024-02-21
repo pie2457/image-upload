@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
 
-	@GetMapping("/image")
+	@GetMapping("/home")
 	public String multipartS3() {
 		return "multipart-upload-s3";
 	}
