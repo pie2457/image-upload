@@ -8,6 +8,7 @@ on:
 
 # --------------------------추가
 env:
+  APPLICATION_SECRET_YML_PATH: ./src/main/resources/application-secret.yml
   PROJECT_NAME: image-upload_project
   BUCKET_NAME: image-upload-cicd-bucket
   CODE_DEPLOY_APP_NAME: image-upload_cicd
@@ -24,6 +25,12 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 17
+
+      - name: Make secret.yml
+        run: touch '${{ env.APPLICATION_SECRET_YML_PATH }}'
+
+      - name: Write secret.yml
+        run: echo '${{ secrets.APPLICATION_SECRET }}' > '${{ env.APPLICATION_SECRET_YML_PATH }}'
 
       - name: Permission for gradlew
         run: chmod +x ./gradlew
