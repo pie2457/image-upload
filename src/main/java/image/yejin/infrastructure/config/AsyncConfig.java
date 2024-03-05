@@ -1,0 +1,21 @@
+package image.yejin.infrastructure.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+
+@EnableAsync
+@Configuration
+public class AsyncConfig {
+
+	@Bean(name = "image-thread-pool")
+	public ThreadPoolTaskExecutor imageExecutor() {
+		ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+		executor.setCorePoolSize(3);
+		executor.setMaxPoolSize(30);
+		executor.setThreadNamePrefix("image-thread-pool-");
+		executor.initialize();
+		return executor;
+	}
+}
